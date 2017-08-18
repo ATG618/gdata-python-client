@@ -194,12 +194,16 @@ class ContactsSample(object):
     notes = raw_input('Enter notes for contact: ')
     primary_email = raw_input('Enter primary email address: ')
 
+    #add new contact name
     new_contact = gdata.contacts.data.ContactEntry(name=gdata.data.Name(full_name=gdata.data.FullName(text=name)))
+    #add new contact notes
     new_contact.content = atom.data.Content(text=notes)
-    # Create a work email address for the contact and use as primary. 
+
+    # Create a work email address for the contact and use as primary.
     new_contact.email.append(gdata.data.Email(address=primary_email, 
         primary='true', rel=gdata.data.WORK_REL))
     entry = self.gd_client.CreateContact(new_contact)
+
 
     if entry:
       print 'Creation successful!'
